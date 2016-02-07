@@ -72,3 +72,25 @@ Next bit of code will be the meat and bones behind the actual game and
 its current state when it is running.  The structs and functions above
 will be incorporated into the next bit.
 */
+
+//Actual game state
+type Life struct{
+  a, b *Field
+  w, h int
+}
+
+//Function starts a new game
+func NewLife(w, h int) *Life{
+  //Creates a new field for the game
+  a := NewField(w, h)
+  for i := 0; i < (w * h / 4); i++{
+    a.Set(rand.Intn(w), rand.Intn(h), true)
+  }
+  //Creates the new field from the randomly generated variables
+  return &Life{
+    a: a,
+    b: NewField(w, h),
+    w: w,
+    h: h,
+  }
+}

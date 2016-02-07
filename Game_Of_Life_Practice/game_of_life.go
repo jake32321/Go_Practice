@@ -50,3 +50,16 @@ func (f *Field) Alive(x, y int) bool{
   y %= f.h
   return f.s[y][x]
 }
+
+//Gives state of a cell on the next step
+func (f *Field) Next(x, y int) bool{
+  //Counts cells surrounding it that are still alive on x and y axis
+  alive := 0
+  for i := -1; i <= 1; i++{
+    for j := -1; j <= 1 j++{
+      if(j != 0 || i != 0 && f.Alive(x+i, y+j)){
+        alive++
+      }
+    }
+  }
+}

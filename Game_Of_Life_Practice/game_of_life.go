@@ -1,11 +1,3 @@
-/*
-  Jacob Reed 2015
-
-  This is meant solely to be a demonstration and learning purposes only.
-  The code included is just an example of what can be done with GoLang.
-  Please use with respect and courtesy.
-*/
-
 package main
 
 //Required items for this program
@@ -20,7 +12,7 @@ import (
 //Uses struct similar to C
 type Field struct {
   //Data types declared after????
-  s [][]bool
+  s   [][]bool
   w, h int
 }
 
@@ -28,7 +20,7 @@ type Field struct {
 func NewField(w, h int) *Field {
     //Makes a two dimensional array for the field
     s := make([][]bool, h)
-    for i := range s{
+    for i := range s {
       //Sets the width of the created field
       s[i] = make([]bool, w)
     }
@@ -55,9 +47,9 @@ func (f *Field) Alive(x, y int) bool {
 func (f *Field) Next(x, y int) bool {
   //Counts cells surrounding it that are still alive on x and y axis
   alive := 0
-  for i := -1; i <= 1; i++{
-    for j := -1; j <= 1 j++{
-      if(j != 0 || i != 0 && f.Alive(x+i, y+j)){
+  for i := -1; i <= 1; i++ {
+    for j := -1; j <= 1; j++ {
+      if (j != 0 || i != 0) && f.Alive(x+i, y+j){
         alive++
       }
     }
@@ -74,7 +66,7 @@ type Life struct{
 }
 
 //Function starts a new game
-func NewLife(w, h int) *Life{
+func NewLife(w, h int) *Life {
   //Creates a new field for the game
   a := NewField(w, h)
   for i := 0; i < (w * h / 4); i++ {
@@ -82,10 +74,8 @@ func NewLife(w, h int) *Life{
   }
   //Creates the new field from the randomly generated variables
   return &Life{
-    a: a,
-    b: NewField(w, h),
-    w: w,
-    h: h,
+    a: a, b: NewField(w, h),
+    w: w, h: h,
   }
 }
 
@@ -103,7 +93,7 @@ func (l *Life) Step() {
 }
 
 //Function visualizes the game using Strings
-function (l *Life) String() string {
+func (l *Life) String() string {
   var buf bytes.Buffer
   for y := 0; y < l.h; y++ {
     for x := 0; x < l.w; x++ {

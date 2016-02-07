@@ -1,3 +1,11 @@
+/*
+  Jacob Reed 2015
+
+  This is meant solely to be a demonstration and learning purposes only.
+  The code included is just an example of what can be done with GoLang.
+  Please use with respect and courtesy. 
+*/
+
 package main
 
 //Required items for this program
@@ -24,4 +32,5 @@ func NewField(w, h int) *Field {
       //Sets the width of the created field
       s[i] = make([]bool, w)
     }
+    return &Field{s: s, w: w, h: h}
 }

@@ -5,6 +5,7 @@
 
 #!/bin/bash
 echo "Script created by Jacob Reed 2015"
+
 sudo apt-get update
 sudo apt-get install golang-go
 echo

@@ -18,9 +18,10 @@ type Field struct{
 
 //This function will make a new empty field based of the determined width and height.
 func NewField(w, h int) *Field {
-    //Makes a two dimensional array for the field 
+    //Makes a two dimensional array for the field
     s := make([][]bool, h)
     for i := range s{
-
+      //Sets the width of the created field
+      s[i] = make([]bool, w)
     }
 }

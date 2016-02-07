@@ -98,10 +98,18 @@ func NewLife(w, h int) *Life{
 //Function progresses the game one step, updating all the cells
 func (l *Life) Step() {
   //Moves from state of the current cells to updated ones
-  for y := 0; y <= l.h; y++ {
-    for x := 0; x <= l.w; x++ {
+  for y := 0; y < l.h; y++ {
+    for x := 0; x < l.w; x++ {
       //Sets the updated field to be the next itteration of the old field.
       l.b.Set(x, y, l.a.Next(x, y))
     }
   }
+  //Swap old with the new
+  l.a, l.b = l.b, l.a
+}
+
+//Function visualizes the game using Strings
+function (l *Life) String() string {
+  var buf bytes.Buffer
+  for y := 0; y <
 }

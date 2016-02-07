@@ -18,7 +18,7 @@ import (
 
 //Creates a two dirmensional field
 //Uses struct similar to C
-type Field struct{
+type Field struct {
   //Data types declared after????
   s [][]bool
   w, h int
@@ -36,12 +36,12 @@ func NewField(w, h int) *Field {
 }
 
 //Sets variable f to a boolean value at a specific (x, y)
-func (f *Field) Set(x, y int, b bool)  {
+func (f *Field) Set(x, y int, b bool) {
   f.s[y][x] = b
 }
 
 //Wrapper for those coordinates that end up outside the field boundaries
-func (f *Field) Alive(x, y int) bool{
+func (f *Field) Alive(x, y int) bool {
   //Wrapper for the width
   x += f.w
   x %= f.w
@@ -52,7 +52,7 @@ func (f *Field) Alive(x, y int) bool{
 }
 
 //Gives state of a cell on the next step
-func (f *Field) Next(x, y int) bool{
+func (f *Field) Next(x, y int) bool {
   //Counts cells surrounding it that are still alive on x and y axis
   alive := 0
   for i := -1; i <= 1; i++{
@@ -83,7 +83,7 @@ type Life struct{
 func NewLife(w, h int) *Life{
   //Creates a new field for the game
   a := NewField(w, h)
-  for i := 0; i < (w * h / 4); i++{
+  for i := 0; i < (w * h / 4); i++ {
     a.Set(rand.Intn(w), rand.Intn(h), true)
   }
   //Creates the new field from the randomly generated variables
@@ -92,5 +92,16 @@ func NewLife(w, h int) *Life{
     b: NewField(w, h),
     w: w,
     h: h,
+  }
+}
+
+//Function progresses the game one step, updating all the cells
+func (l *Life) Step() {
+  //Moves from state of the current cells to updated ones
+  for y := 0; y <= l.h; y++ {
+    for x := 0; x <= l.w; x++ {
+      //Sets the updated field to be the next itteration of the old field.
+      l.b.Set(x, y, l.a.Next(x, y))
+    }
   }
 }

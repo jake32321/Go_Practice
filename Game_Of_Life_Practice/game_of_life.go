@@ -3,7 +3,7 @@
 
   This is meant solely to be a demonstration and learning purposes only.
   The code included is just an example of what can be done with GoLang.
-  Please use with respect and courtesy. 
+  Please use with respect and courtesy.
 */
 
 package main
@@ -33,4 +33,20 @@ func NewField(w, h int) *Field {
       s[i] = make([]bool, w)
     }
     return &Field{s: s, w: w, h: h}
+}
+
+//Sets variable f to a boolean value at a specific (x, y)
+func (f *Field) Set(x, y int, b bool)  {
+  f.s[y][x] = b
+}
+
+//Wrapper for those coordinates that end up outside the field boundaries
+func (f *Field) Alive(x, y int) bool{
+  //Wrapper for the width
+  x += f.w
+  x %= f.w
+  //Wrapper for the height
+  y += f.h
+  y %= f.h
+  return f.s[y][x]
 }

@@ -62,4 +62,13 @@ func (f *Field) Next(x, y int) bool{
       }
     }
   }
+  //Returns the state based on the rules of the game.
+  //State might be off as well.
+  return alive == 3 || alive == 2 && f.Alive(x, y)
 }
+
+/*
+Next bit of code will be the meat and bones behind the actual game and
+its current state when it is running.  The structs and functions above
+will be incorporated into the next bit.
+*/

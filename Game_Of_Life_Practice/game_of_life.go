@@ -67,12 +67,6 @@ func (f *Field) Next(x, y int) bool {
   return alive == 3 || alive == 2 && f.Alive(x, y)
 }
 
-/*
-Next bit of code will be the meat and bones behind the actual game and
-its current state when it is running.  The structs and functions above
-will be incorporated into the next bit.
-*/
-
 //Actual game state
 type Life struct{
   a, b *Field
@@ -111,5 +105,33 @@ func (l *Life) Step() {
 //Function visualizes the game using Strings
 function (l *Life) String() string {
   var buf bytes.Buffer
-  for y := 0; y <
+  for y := 0; y < l.h; y++ {
+    for x := 0; x < l.w; x++ {
+      b := byte(' ')
+      if l.a.Alive(x, y) {
+        b = '*'
+      }
+      buf.WriteByte(b)
+    }
+    buf.WriteByte('\n')
+  }
+  return buf.String()
+}
+
+/*
+Next bit of code will be the meat and bones behind the actual game and
+its current state when it is running.  The structs and functions above
+will be incorporated into the next bit.
+*/
+
+func main() {
+  //Field is created with a set width and height
+  l := NewLife(40, 15)
+  //Game will execute for 299 steps.  Can be changed.
+  for i := 0; i < 300; i++ {
+    l.Step()
+    //Clears the field on new step
+    fmt.Print("\x0c", l)
+    time.Sleep(time.Second / 30)
+  }
 }
